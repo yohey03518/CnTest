@@ -1,0 +1,73 @@
+﻿@{
+    ViewBag.Title = "Tutorial";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>@ViewBag.Title</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta content="false" name="twcClient" id="twcClient" />
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .img-fluid {
+            width: 100%;
+        }
+
+        .ios {
+            display: none;
+        }
+
+            .ios.show {
+                display: block;
+            }
+    </style>
+</head>
+<body>
+    <div class="ios">
+        <img class="img-fluid" src="Wechat-openBrowser-ios.jpg" />
+    </div>
+    <script>
+        var url = '@ViewBag.TargetUrl';
+        document.querySelector('body').addEventListener('touchmove', function (event) {
+            event.preventDefault();
+        });
+        window.mobileUtil = (function (win, doc) {
+            var UA = navigator.userAgent,
+            isAndroid = /android|adr/gi.test(UA),
+                isIOS = /ios|iphone|ipod|ipad/gi.test(UA) && !isAndroid,
+                isBlackBerry = /BlackBerry/i.test(UA),
+                isWindowPhone = /IEMobile/i.test(UA),
+                isMobile = isAndroid || isIOS || isBlackBerry || isWindowPhone;
+            return {
+                isAndroid: isAndroid,
+                isIOS: isIOS,
+                isMobile: isMobile,
+                isWeixin: /MicroMessenger/gi.test(UA),
+                isQQ: /QQ/gi.test(UA)
+            };
+        })(window, document);
+        if (mobileUtil.isWeixin) {
+            if (mobileUtil.isIOS) {
+                document.querySelector('.ios').classList.add('show');
+            } else {
+                url = '?android=1';
+                var iframe = document.createElement("iframe");
+                iframe.style.display = "none";
+                iframe.src = url;
+                document.body.appendChild(iframe);
+            }
+        } else {
+            window.location.replace(url);
+        }
+    </script>
+</body>
+</html>

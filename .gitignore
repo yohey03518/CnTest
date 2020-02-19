@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/bin/Debug/netcoreapp3.0
+/.vs/CnRedirect
+/NetCore22/CnTest2_2/.vs/CnTest2_2/v16
+/NetCore22/CnTest2_2/obj
+/obj
