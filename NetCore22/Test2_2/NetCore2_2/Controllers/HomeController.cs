@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace CnTest2_2.Controllers
+namespace NetCore2_2.Controllers
 {
     public class HomeController : Controller
     {
